@@ -16,6 +16,7 @@ package:
 	vagrant box add mbigras/ubuntu-18.04 ubuntu-18.04.box
 
 # doesn't work
+# todo: figure out how to get vagrant upload to work
 # upload:
 # 	vagrant upload mbigras/ubuntu-18.04
 
