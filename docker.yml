@@ -1,0 +1,24 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: install docker
+      apt:
+        name: docker.io
+        state: present
+
+    - name: start and enable docker.service
+      systemd:
+        name: docker.service
+        state: started
+        enabled: yes
+
+    - name: install pip
+      apt:
+        name: python3-pip
+        state: present
+        force_apt_get: yes
+
+    - name: install docker python module
+      pip:
+        name: docker

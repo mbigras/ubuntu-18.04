@@ -1,0 +1,10 @@
+---
+all:
+  vars:
+    ansible_private_key_file: ~/.vagrant.d/insecure_private_key
+    ansible_python_interpreter: /usr/bin/python3
+    ansible_ssh_common_args: -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+    ansible_user: vagrant
+  hosts:
+    app1.region1.example.com:
+      ansible_host: '192.168.33.10'

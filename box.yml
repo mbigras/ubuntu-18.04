@@ -1,0 +1,4 @@
+---
+- import_playbook: apt.yml
+- import_playbook: docker.yml
+- import_playbook: small.yml

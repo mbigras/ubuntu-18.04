@@ -1,0 +1,28 @@
+---
+# https://scotch.io/tutorials/how-to-create-a-vagrant-base-box-from-an-existing-one
+# https://github.com/hashicorp/vagrant/issues/343
+# todo: explore the bento box way at
+# https://github.com/chef/bento/blob/master/packer_templates/ubuntu/scripts/cleanup.sh
+# https://github.com/chef/bento/blob/master/packer_templates/_common/minimize.sh
+- name: make the box as small as possible
+  hosts: all
+  become: yes
+  tasks:
+    - name: remove apt cache
+      shell:
+        cmd: |
+          apt-get clean
+
+    - name: zero out the drive
+      shell:
+        cmd: |
+          dd if=/dev/zero of=/EMPTY bs=1M
+          rm -f /EMPTY
+
+    - name: clear history
+      shell:
+        cmd: |
+          cat /dev/null > ~/.bash_history
+          history -c
+      args:
+        executable: /bin/bash
